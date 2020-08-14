@@ -1,0 +1,11 @@
+.productImage {
+  height: 170px;
+}
+.deleteEditBtn {
+  display: flex;
+  justify-content: space-between;
+}
+.deleteEditBtn > button {
+  width: 100%;
+  margin: 0 0.1rem;
+}

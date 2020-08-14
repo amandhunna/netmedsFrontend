@@ -1,0 +1,42 @@
+header {
+  background: #343a40 !important;
+  z-index: 1;
+  color: white;
+}
+
+/* https://medium.com/@hollybourneville/creating-border-lines-using-pseudo-elements-in-css-a460396299e8 */
+
+span.humburger {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+span.humburger > i {
+  width: 100%;
+  background: white;
+  height: 2px;
+}
+
+span.humburger::before,
+span.humburger::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0;
+  height: 2px;
+  background: white;
+  width: 100%;
+}
+
+span.humburger::after {
+  top: auto;
+  bottom: 0;
+  width: 75%;
+}
+
+.active-store {
+  color: burlywood;
+}

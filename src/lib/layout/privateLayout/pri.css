@@ -1,0 +1,19 @@
+.titleComponents {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 0 5px 0;
+}
+
+.scroll-able {
+  height: 85vh;
+  overflow: scroll;
+}
+.mainLayout {
+  background-color: #000;
+}
+
+.b-container.container-fluid {
+  background: #000;
+}
+
