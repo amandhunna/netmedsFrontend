@@ -3,23 +3,50 @@ import { Table, Button } from 'react-bootstrap';
 import Jumbotron from "../../lib/components/customJumbotron";
 import Spinner from "../../lib/components/growSpinner";
 import context from "../../lib/context/currentUser";
+import config from "../../config";
+import helper from "../../lib/helper/base";
 import "./cart.css"
-import dummy from "./dummy";
+
 
 const Cart = () => {
     const { history } = useContext(context);
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [totalPrice, setTotalPrice] = useState(0);
-    useEffect(() => {
-        setOrders(dummy);
+
+    const getCartItems = async () => {
+        const userId = JSON.parse(localStorage.getItem("netUser")).id;
+        const url = `${config.url.cart}/${userId}`
+
+        const requestData = {
+            url,
+            timeout: 10000,
+            method: 'GET',
+        }
+        const response = await helper.requestAPI(requestData);
+        if (!response.length) {
+            setOrders([]);
+            setLoading(false);
+            return;
+        }
+        const { items } = response[0];
+
+        const parsedData = JSON.parse(items);
+        const arrayData = Object.values(parsedData);
+        setOrders(arrayData);
         setLoading(false);
+    }
+
+
+    useEffect(() => {
+        getCartItems();
     }, []);
 
     useEffect(() => {
         const total = orders.reduce((acc, curr) => curr.minPrice + acc, 0)
         setTotalPrice(total);
     }, [orders]);
+
 
     if (loading) {
         return <Spinner text="Loading..." />

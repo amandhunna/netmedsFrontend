@@ -44,7 +44,6 @@ const GetCard = (props) => {
             }
 
             const url = `${config.url.cart}`
-            //    JSON.parse(orderData.items)
 
             const requestData = {
                 url,
@@ -110,14 +109,11 @@ const GetCards = props => {
     }
 
     useEffect(() => {
-        getCartItems();
+        getCartItems()
+        getOrders()
     }, [search]);
-
-
-    useEffect(() => {
-        getOrders();
-    }, []);
-
+    
+    
     if (isLoading) return <Spinner />;
 
     if (!cards.length) return <CustomJumbotron header="No data" body="Currently have no tests" />
